@@ -1,0 +1,104 @@
+import { createFileRoute } from "@tanstack/react-router";
+
+export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Hardik Udawat — CS Engineer & Software Developer" },
+      { name: "description", content: "Hardik Udawat builds thoughtful, reliable software. Projects, skills and contact." },
+      { property: "og:title", content: "Hardik Udawat — Software Developer" },
+      { property: "og:description", content: "CS engineer building thoughtful, reliable software." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: Index,
+});
+
+const projects = [
+  { title: "Project One", tag: "Web App", desc: "A full-stack web app — replace with your real project and a short story of what it solves.", tone: "bg-primary text-primary-foreground" },
+  { title: "Project Two", tag: "Backend", desc: "APIs and services built for speed and reliability. Swap in your own details.", tone: "bg-sage text-foreground" },
+  { title: "Project Three", tag: "Tooling", desc: "A developer tool or open-source contribution you're proud of.", tone: "bg-peach text-foreground" },
+  { title: "Project Four", tag: "Experiment", desc: "Something curious — ML, games, or a weekend hack.", tone: "bg-forest text-primary-foreground" },
+];
+
+const skills = ["TypeScript", "React", "Node.js", "Python", "Java", "SQL", "Git", "Data Structures", "System Design", "REST APIs"];
+
+function Index() {
+  return (
+    <div className="min-h-screen">
+      <header className="fixed inset-x-0 top-0 z-20 bg-background/80 backdrop-blur">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+          <a href="#top" className="font-display text-2xl text-primary">H.U.</a>
+          <div className="flex gap-6 text-sm font-medium">
+            <a href="#work" className="hover:text-primary">Work</a>
+            <a href="#about" className="hover:text-primary">About</a>
+            <a href="#contact" className="hover:text-primary">Contact</a>
+          </div>
+        </nav>
+      </header>
+
+      <section id="top" className="grain relative flex min-h-screen items-center px-6 pt-24">
+        <div className="mx-auto w-full max-w-6xl">
+          <p className="animate-rise mb-6 inline-block rounded-full bg-secondary px-4 py-1 text-sm font-semibold text-secondary-foreground">
+            CS Engineer · Software Developer
+          </p>
+          <h1 className="animate-rise text-6xl leading-[0.95] sm:text-8xl md:text-9xl" style={{ animationDelay: ".1s" }}>
+            Hardik<br /><span className="text-primary">Udawat</span>
+          </h1>
+          <p className="animate-rise mt-8 max-w-xl text-lg text-muted-foreground sm:text-xl" style={{ animationDelay: ".25s" }}>
+            I build thoughtful, reliable software — turning messy problems into clean, fast and friendly products.
+          </p>
+          <div className="animate-rise mt-10 flex flex-wrap gap-4" style={{ animationDelay: ".4s" }}>
+            <a href="#work" className="rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground transition hover:-translate-y-0.5">See my work</a>
+            <a href="#contact" className="rounded-full border-2 border-foreground px-7 py-3 font-semibold transition hover:bg-foreground hover:text-background">Get in touch</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" className="px-6 py-28">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="mb-14 text-5xl sm:text-6xl">Selected <span className="text-primary">work</span></h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            {projects.map((p, i) => (
+              <article key={p.title} className={`${p.tone} group rounded-3xl p-10 transition duration-500 hover:-translate-y-1 ${i % 2 ? "md:mt-16" : ""}`}>
+                <span className="text-xs font-bold uppercase tracking-widest opacity-80">0{i + 1} — {p.tag}</span>
+                <h3 className="mt-16 text-4xl">{p.title}</h3>
+                <p className="mt-4 max-w-sm opacity-90">{p.desc}</p>
+                <span className="mt-8 inline-block font-semibold transition group-hover:translate-x-2">View project →</span>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="about" className="bg-secondary px-6 py-28">
+        <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[1.2fr_1fr]">
+          <div>
+            <h2 className="text-5xl sm:text-6xl">About <span className="text-primary">me</span></h2>
+            <p className="mt-8 text-lg leading-relaxed text-secondary-foreground">
+              I'm a Computer Science engineer who loves the craft of software — from elegant algorithms to polished interfaces.
+              I care about writing code that's easy to read, fast to run, and a joy to use.
+            </p>
+          </div>
+          <div className="flex flex-wrap content-start gap-3">
+            {skills.map((s) => (
+              <span key={s} className="rounded-full border-2 border-forest px-4 py-2 font-medium text-forest">{s}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="px-6 py-32 text-center">
+        <h2 className="text-5xl sm:text-7xl">Let's build<br /><span className="text-primary">something.</span></h2>
+        <a href="mailto:hello@example.com" className="mt-10 inline-block rounded-full bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground transition hover:-translate-y-0.5">
+          hello@example.com
+        </a>
+        <div className="mt-8 flex justify-center gap-6 font-medium">
+          <a href="https://github.com" className="hover:text-primary">GitHub</a>
+          <a href="https://linkedin.com" className="hover:text-primary">LinkedIn</a>
+        </div>
+        <p className="mt-20 text-sm text-muted-foreground">© {new Date().getFullYear()} Hardik Udawat</p>
+      </section>
+    </div>
+  );
+}
